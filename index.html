@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BuildPay helps construction companies manage worker attendance, wages, and teams from one mobile app.">
+    <title>BuildPay | Smarter workforce management</title>
+    <style>
+        :root {
+            --navy: #102a43;
+            --blue: #1976d2;
+            --blue-dark: #1259a5;
+            --orange: #f59e0b;
+            --cream: #f7fafc;
+            --text: #52606d;
+            --white: #ffffff;
+            --shadow: 0 18px 45px rgba(16, 42, 67, .12);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            background: var(--cream);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+
+        nav {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            padding: 22px 0;
+        }
+
+        .brand { color: var(--navy); font-size: 1.45rem; font-weight: 800; letter-spacing: -.04em; }
+        .brand span { color: var(--orange); }
+        .nav-links { display: flex; gap: 28px; font-size: .95rem; font-weight: 600; }
+        .nav-links a:hover { color: var(--blue); }
+
+        .hero {
+            background: linear-gradient(135deg, #eaf4ff 0%, #fff8e8 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            align-items: center;
+            display: grid;
+            gap: 70px;
+            grid-template-columns: 1.05fr .95fr;
+            min-height: 600px;
+            padding: 55px 0 75px;
+        }
+
+        .eyebrow { color: var(--blue); font-size: .8rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+        h1, h2, h3 { color: var(--navy); line-height: 1.15; margin: 0; }
+        h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); letter-spacing: -.06em; margin: 15px 0 22px; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; }
+        .hero-copy { font-size: 1.15rem; max-width: 560px; }
+        .buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+        .button { border-radius: 8px; display: inline-block; font-weight: 700; padding: 13px 22px; transition: transform .2s, background .2s; }
+        .button:hover { transform: translateY(-2px); }
+        .button-primary { background: var(--blue); color: var(--white); }
+        .button-primary:hover { background: var(--blue-dark); }
+        .button-light { background: var(--white); color: var(--navy); }
+
+        .phone-wrap { position: relative; text-align: center; }
+        .phone {
+            background: var(--navy);
+            border: 10px solid var(--navy);
+            border-radius: 34px;
+            box-shadow: 20px 25px 45px rgba(16, 42, 67, .25);
+            display: inline-block;
+            max-width: 275px;
+            overflow: hidden;
+            padding: 22px 15px;
+            text-align: left;
+            transform: rotate(3deg);
+            width: 100%;
+        }
+        .app-screen { background: var(--white); border-radius: 19px; padding: 20px 16px; }
+        .app-top { color: var(--navy); display: flex; justify-content: space-between; font-weight: 800; }
+        .app-card { background: #eaf4ff; border-radius: 12px; margin: 20px 0 14px; padding: 17px; }
+        .app-card strong { color: var(--navy); display: block; font-size: 1.7rem; }
+        .progress { background: #d7e3ef; border-radius: 8px; height: 8px; margin-top: 12px; }
+        .progress span { background: var(--orange); border-radius: 8px; display: block; height: 100%; width: 76%; }
+        .mini-row { border-bottom: 1px solid #edf2f7; color: var(--navy); display: flex; justify-content: space-between; padding: 12px 0; }
+        .mini-row small { color: #2f855a; font-weight: 700; }
+
+        section { padding: 92px 0; }
+        .section-heading { margin: 0 auto 48px; max-width: 650px; text-align: center; }
+        .section-heading p { margin-bottom: 0; }
+        .features { display: grid; gap: 22px; grid-template-columns: repeat(3, 1fr); }
+        .feature { background: var(--white); border-radius: 14px; box-shadow: 0 8px 25px rgba(16, 42, 67, .06); padding: 30px; }
+        .icon { align-items: center; background: #eaf4ff; border-radius: 12px; color: var(--blue); display: flex; font-size: 1.5rem; height: 50px; justify-content: center; margin-bottom: 20px; width: 50px; }
+        .feature h3 { font-size: 1.2rem; margin-bottom: 10px; }
+
+        .stats { background: var(--navy); color: #d9e2ec; }
+        .stat-grid { display: grid; gap: 30px; grid-template-columns: repeat(3, 1fr); text-align: center; }
+        .stat strong { color: var(--white); display: block; font-size: 2.5rem; }
+
+        .feedback { background: var(--white); }
+        .feedback-grid { align-items: start; display: grid; gap: 70px; grid-template-columns: .85fr 1.15fr; }
+        form { background: var(--cream); border-radius: 16px; padding: 30px; }
+        label { color: var(--navy); display: block; font-size: .9rem; font-weight: 700; margin: 14px 0 6px; }
+        input, select, textarea { border: 1px solid #d9e2ec; border-radius: 7px; font: inherit; padding: 12px; width: 100%; }
+        textarea { min-height: 120px; resize: vertical; }
+        input:focus, select:focus, textarea:focus { border-color: var(--blue); outline: 2px solid #bfdbfe; }
+        form .button { border: 0; cursor: pointer; margin-top: 18px; }
+        footer { background: #081c2d; color: #9fb3c8; padding: 28px 0; text-align: center; }
+
+        @media (max-width: 760px) {
+            .nav-links { display: none; }
+            .hero-content, .feedback-grid { gap: 40px; grid-template-columns: 1fr; }
+            .hero-content { padding-top: 35px; }
+            .phone-wrap { order: -1; }
+            .features, .stat-grid { grid-template-columns: 1fr; }
+            section { padding: 65px 0; }
+        }
+    </style>
+    <script>
+        function sendWhatsApp() {
+  const phone = "917306927662"; 
+  const message = encodeURIComponent(document.getElementById('message').value);
+
+  // Redirects the user to WhatsApp
+  window.open(`https://wa.me{phone}?text=${message}`, '_blank');
+}
+    </script>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <nav aria-label="Main navigation">
+                <a class="brand" href="#top">Build<span>Pay</span></a>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#feedback">Feedback</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+            <div class="hero-content" id="top">
+                <div>
+                    <div class="eyebrow">Workforce management, simplified</div>
+                    <h1>Build smarter. Pay fairly.</h1>
+                    <p class="hero-copy">BuildPay gives contractors and construction companies one simple mobile app to track attendance, manage teams, and calculate wages accurately.</p>
+                    <div class="buttons">
+                        <a class="button button-primary" href="#feedback">Request a demo</a>
+                        <a class="button button-light" href="#features">Explore features</a>
+                    </div>
+                </div>
+                <div class="phone-wrap" aria-label="BuildPay app preview">
+                    <div class="phone">
+                        <div class="app-screen">
+                            <div class="app-top"><span>Good morning!</span><span>☰</span></div>
+                            <div class="app-card"><small>Team attendance</small><strong>76 / 82</strong><div class="progress"><span></span></div></div>
+                            <div class="mini-row"><span>Present today</span><small>92.6%</small></div>
+                            <div class="mini-row"><span>Hours logged</span><b>608 hrs</b></div>
+                            <div class="mini-row"><span>Payroll status</span><small>Ready</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="features">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">Everything in one place</div>
+                    <h2>Less paperwork. More progress.</h2>
+                    <p>Keep your projects moving with tools designed around the realities of construction work.</p>
+                </div>
+                <div class="features">
+                    <article class="feature"><div class="icon">✓</div><h3>Effortless attendance</h3><p>Record clock-ins, clock-outs, locations, and daily attendance from any job site.</p></article>
+                    <article class="feature"><div class="icon">₹</div><h3>Accurate wage tracking</h3><p>Calculate daily wages, overtime, advances, and deductions without manual spreadsheets.</p></article>
+                    <article class="feature"><div class="icon">♙</div><h3>One connected team</h3><p>Give supervisors and workers the right information with clear roles and real-time updates.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container stat-grid">
+                <div class="stat"><strong>40%</strong><span>less admin time</span></div>
+                <div class="stat"><strong>100%</strong><span>payroll visibility</span></div>
+                <div class="stat"><strong>24/7</strong><span>access from your phone</span></div>
+            </div>
+        </section>
+
+        <section class="feedback" id="feedback">
+            <div class="container feedback-grid">
+                <div>
+                    <div class="eyebrow">Help us build better</div>
+                    <h2>Tell us what you think.</h2>
+                    <p>We are building BuildPay for the people who keep projects moving. Share your feedback, request a feature, or tell us how your team manages attendance today.</p>
+                    <p><strong>Your feedback helps us make every shift simpler.</strong></p>
+                </div>
+                <form action="#" method="post">
+                    <h3>Send us your feedback</h3>
+                    <label for="name">Your name</label>
+                    <input id="name" name="name" type="text" placeholder="Enter your name" required>
+                    <label for="email">Work email</label>
+                    <input id="email" name="email" type="email" placeholder="you@company.com" required>
+                    <label for="role">I am a...</label>
+                    <select id="role" name="role"><option>Contractor</option><option>Construction company</option><option>Site supervisor</option><option>Worker</option></select>
+                    <label for="message">Your feedback</label>
+                    <textarea id="message" name="message" placeholder="What would make BuildPay more useful for you?" required></textarea>
+                    <button class="button button-primary" onclick="sendWhatsApp();" type="submit">Submit feedback</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact"><div class="container">© 2025 BuildPay · Built for better construction teams</div></footer>
+</body>
+</html>
