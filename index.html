@@ -1,223 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="BuildPay helps construction companies manage worker attendance, wages, and teams from one mobile app.">
-    <title>BuildPay | Smarter workforce management</title>
-    <style>
-        :root {
-            --navy: #102a43;
-            --blue: #1976d2;
-            --blue-dark: #1259a5;
-            --orange: #f59e0b;
-            --cream: #f7fafc;
-            --text: #52606d;
-            --white: #ffffff;
-            --shadow: 0 18px 45px rgba(16, 42, 67, .12);
-        }
-
-        * { box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            margin: 0;
-            color: var(--text);
-            background: var(--cream);
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-        }
-
-        a { color: inherit; text-decoration: none; }
-        .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
-
-        nav {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-            padding: 22px 0;
-        }
-
-        .brand { color: var(--navy); font-size: 1.45rem; font-weight: 800; letter-spacing: -.04em; }
-        .brand span { color: var(--orange); }
-        .nav-links { display: flex; gap: 28px; font-size: .95rem; font-weight: 600; }
-        .nav-links a:hover { color: var(--blue); }
-
-        .hero {
-            background: linear-gradient(135deg, #eaf4ff 0%, #fff8e8 100%);
-            overflow: hidden;
-        }
-
-        .hero-content {
-            align-items: center;
-            display: grid;
-            gap: 70px;
-            grid-template-columns: 1.05fr .95fr;
-            min-height: 600px;
-            padding: 55px 0 75px;
-        }
-
-        .eyebrow { color: var(--blue); font-size: .8rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-        h1, h2, h3 { color: var(--navy); line-height: 1.15; margin: 0; }
-        h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); letter-spacing: -.06em; margin: 15px 0 22px; }
-        h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; }
-        .hero-copy { font-size: 1.15rem; max-width: 560px; }
-        .buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-        .button { border-radius: 8px; display: inline-block; font-weight: 700; padding: 13px 22px; transition: transform .2s, background .2s; }
-        .button:hover { transform: translateY(-2px); }
-        .button-primary { background: var(--blue); color: var(--white); }
-        .button-primary:hover { background: var(--blue-dark); }
-        .button-light { background: var(--white); color: var(--navy); }
-
-        .phone-wrap { position: relative; text-align: center; }
-        .phone {
-            background: var(--navy);
-            border: 10px solid var(--navy);
-            border-radius: 34px;
-            box-shadow: 20px 25px 45px rgba(16, 42, 67, .25);
-            display: inline-block;
-            max-width: 275px;
-            overflow: hidden;
-            padding: 22px 15px;
-            text-align: left;
-            transform: rotate(3deg);
-            width: 100%;
-        }
-        .app-screen { background: var(--white); border-radius: 19px; padding: 20px 16px; }
-        .app-top { color: var(--navy); display: flex; justify-content: space-between; font-weight: 800; }
-        .app-card { background: #eaf4ff; border-radius: 12px; margin: 20px 0 14px; padding: 17px; }
-        .app-card strong { color: var(--navy); display: block; font-size: 1.7rem; }
-        .progress { background: #d7e3ef; border-radius: 8px; height: 8px; margin-top: 12px; }
-        .progress span { background: var(--orange); border-radius: 8px; display: block; height: 100%; width: 76%; }
-        .mini-row { border-bottom: 1px solid #edf2f7; color: var(--navy); display: flex; justify-content: space-between; padding: 12px 0; }
-        .mini-row small { color: #2f855a; font-weight: 700; }
-
-        section { padding: 92px 0; }
-        .section-heading { margin: 0 auto 48px; max-width: 650px; text-align: center; }
-        .section-heading p { margin-bottom: 0; }
-        .features { display: grid; gap: 22px; grid-template-columns: repeat(3, 1fr); }
-        .feature { background: var(--white); border-radius: 14px; box-shadow: 0 8px 25px rgba(16, 42, 67, .06); padding: 30px; }
-        .icon { align-items: center; background: #eaf4ff; border-radius: 12px; color: var(--blue); display: flex; font-size: 1.5rem; height: 50px; justify-content: center; margin-bottom: 20px; width: 50px; }
-        .feature h3 { font-size: 1.2rem; margin-bottom: 10px; }
-
-        .stats { background: var(--navy); color: #d9e2ec; }
-        .stat-grid { display: grid; gap: 30px; grid-template-columns: repeat(3, 1fr); text-align: center; }
-        .stat strong { color: var(--white); display: block; font-size: 2.5rem; }
-
-        .feedback { background: var(--white); }
-        .feedback-grid { align-items: start; display: grid; gap: 70px; grid-template-columns: .85fr 1.15fr; }
-        form { background: var(--cream); border-radius: 16px; padding: 30px; }
-        label { color: var(--navy); display: block; font-size: .9rem; font-weight: 700; margin: 14px 0 6px; }
-        input, select, textarea { border: 1px solid #d9e2ec; border-radius: 7px; font: inherit; padding: 12px; width: 100%; }
-        textarea { min-height: 120px; resize: vertical; }
-        input:focus, select:focus, textarea:focus { border-color: var(--blue); outline: 2px solid #bfdbfe; }
-        form .button { border: 0; cursor: pointer; margin-top: 18px; }
-        footer { background: #081c2d; color: #9fb3c8; padding: 28px 0; text-align: center; }
-
-        @media (max-width: 760px) {
-            .nav-links { display: none; }
-            .hero-content, .feedback-grid { gap: 40px; grid-template-columns: 1fr; }
-            .hero-content { padding-top: 35px; }
-            .phone-wrap { order: -1; }
-            .features, .stat-grid { grid-template-columns: 1fr; }
-            section { padding: 65px 0; }
-        }
-    </style>
-    <script>
-        function sendWhatsApp() {
-  const phone = "917306927662"; 
-  const message = encodeURIComponent(document.getElementById('message').value);
-
-  // Redirects the user to WhatsApp
-            window.open(`https://wa.me/917306927662?text=${message}`, '_blank');
-}
-    </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student enquiry follow-up tool for training centres in Kerala</title>
+<meta name="description" content="Stop losing student enquiries in Excel and WhatsApp. A simple follow-up tool for small training centres in Kerala. Pilot spots open.">
+<style>
+  :root{
+    --ink:#14211f; --muted:#52615e; --bg:#fbfaf6; --card:#ffffff;
+    --brand:#0b6b5d; --brand-dark:#084f45; --accent:#f2b134; --line:#e3e0d6; --soft:#eef5f2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Noto Sans Malayalam",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:10;background:rgba(251,250,246,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-weight:800;letter-spacing:-.01em;text-decoration:none}
+  .logo span{color:var(--brand)}
+  .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:10px;border:0;cursor:pointer;font-size:1rem}
+  .btn:hover{background:var(--brand-dark)}
+  .btn.ghost{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+  .btn.ghost:hover{background:var(--soft)}
+  .btn.small{padding:8px 14px;font-size:.92rem}
+  .hero{padding:48px 0 40px}
+  .badge{display:inline-block;background:#fff4d6;border:1px solid #f0d58a;color:#6b4e00;font-size:.85rem;font-weight:600;padding:5px 12px;border-radius:999px}
+  h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.12;letter-spacing:-.02em;margin:16px 0 14px}
+  .ml{color:var(--brand);font-weight:600;margin:0 0 10px}
+  .lead{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 0 24px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+  @media(max-width:820px){
+    .grid2 {
+        grid-template-columns: 1fr;
+        margin: 12px 12px 12px 12px;
+    }}
+  section{padding:48px 0}
+  section.alt{background:var(--soft)}
+  h2{font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.01em;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 28px;max-width:640px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{margin:0 0 6px;font-size:1.05rem}
+  .card p{margin:0;color:var(--muted)}
+  .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+  .mock{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 10px 30px rgba(20,33,31,.08)}
+  .mock .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .mock .top b{font-size:1rem}
+  .tag{font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:999px;background:#fde9e7;color:#9b2c20}
+  .tag.ok{background:#e1f3ea;color:#176443}
+  .tag.warm{background:#fff4d6;color:#6b4e00}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:.93rem}
+  .row small{display:block;color:var(--muted)}
+  .sample{font-size:.78rem;color:var(--muted);margin:10px 0 0;text-align:center}
+  .price-box{background:var(--card);border:2px solid var(--brand);border-radius:18px;padding:28px;max-width:520px}
+  .price{font-size:2.6rem;font-weight:800;letter-spacing:-.02em}
+  .price span{font-size:1rem;font-weight:600;color:var(--muted)}
+  ul.tick{list-style:none;padding:0;margin:16px 0 22px}
+  ul.tick li{padding-left:28px;position:relative;margin:8px 0}
+  ul.tick li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:800}
+  .note{font-size:.9rem;color:var(--muted)}
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+  summary{cursor:pointer;font-weight:700}
+  details p{margin:10px 0 0;color:var(--muted)}
+  .who{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .avatar{width:56px;height:56px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem}
+  footer{padding:28px 0 90px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+  .float{position:fixed;right:16px;bottom:16px;z-index:20;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+</style>
 </head>
 <body>
-    <header class="hero">
-        <div class="container">
-            <nav aria-label="Main navigation">
-                <a class="brand" href="#top">Build<span>Pay</span></a>
-                <div class="nav-links">
-                    <a href="#features">Features</a>
-                    <a href="#feedback">Feedback</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </nav>
-            <div class="hero-content" id="top">
-                <div>
-                    <div class="eyebrow">Workforce management, simplified</div>
-                    <h1>Build smarter. Pay fairly.</h1>
-                    <p class="hero-copy">BuildPay gives contractors and construction companies one simple mobile app to track attendance, manage teams, and calculate wages accurately.</p>
-                    <div class="buttons">
-                        <a class="button button-primary" href="#feedback">Request a demo</a>
-                        <a class="button button-light" href="#features">Explore features</a>
-                    </div>
-                </div>
-                <div class="phone-wrap" aria-label="BuildPay app preview">
-                    <div class="phone">
-                        <div class="app-screen">
-                            <div class="app-top"><span>Good morning!</span><span>☰</span></div>
-                            <div class="app-card"><small>Team attendance</small><strong>76 / 82</strong><div class="progress"><span></span></div></div>
-                            <div class="mini-row"><span>Present today</span><small>92.6%</small></div>
-                            <div class="mini-row"><span>Hours logged</span><b>608 hrs</b></div>
-                            <div class="mini-row"><span>Payroll status</span><small>Ready</small></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <main>
-        <section id="features">
-            <div class="container">
-                <div class="section-heading">
-                    <div class="eyebrow">Everything in one place</div>
-                    <h2>Less paperwork. More progress.</h2>
-                    <p>Keep your projects moving with tools designed around the realities of construction work.</p>
-                </div>
-                <div class="features">
-                    <article class="feature"><div class="icon">✓</div><h3>Effortless attendance</h3><p>Record clock-ins, clock-outs, locations, and daily attendance from any job site.</p></article>
-                    <article class="feature"><div class="icon">₹</div><h3>Accurate wage tracking</h3><p>Calculate daily wages, overtime, advances, and deductions without manual spreadsheets.</p></article>
-                    <article class="feature"><div class="icon">♙</div><h3>One connected team</h3><p>Give supervisors and workers the right information with clear roles and real-time updates.</p></article>
-                </div>
-            </div>
-        </section>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span data-name></span></a>
+    <a class="btn small" data-wa="Hi, I'm interested in the pilot for my centre.">Reserve pilot spot</a>
+  </div>
+</header>
 
-        <section class="stats">
-            <div class="container stat-grid">
-                <div class="stat"><strong>40%</strong><span>less admin time</span></div>
-                <div class="stat"><strong>100%</strong><span>payroll visibility</span></div>
-                <div class="stat"><strong>24/7</strong><span>access from your phone</span></div>
-            </div>
-        </section>
+<main id="top">
+<div class="wrap hero grid2">
+  <div>
+    <span class="badge">Early access · Pilot with 5 centres</span>
+    <h1>Stop losing student enquiries in Excel and WhatsApp.</h1>
+    <p class="ml">വിദ്യാർത്ഥികളുടെ അന്വേഷണങ്ങൾ ഇനി നഷ്ടപ്പെടില്ല.</p>
+    <p class="lead">A simple follow-up tool for small training centres in Kerala. See every enquiry in one place, get a daily list of who to call, and never forget a follow-up.</p>
+    <div class="cta">
+      <a class="btn" data-wa="Hi, I'd like to reserve a pilot spot for my centre.">Reserve a pilot spot on WhatsApp</a>
+      <a class="btn ghost" href="#how">See how it works</a>
+    </div>
+    <p class="note" style="margin-top:14px">First month free for pilot centres. No payment needed to start.</p>
+  </div>
 
-        <section class="feedback" id="feedback">
-            <div class="container feedback-grid">
-                <div>
-                    <div class="eyebrow">Help us build better</div>
-                    <h2>Tell us what you think.</h2>
-                    <p>We are building BuildPay for the people who keep projects moving. Share your feedback, request a feature, or tell us how your team manages attendance today.</p>
-                    <p><strong>Your feedback helps us make every shift simpler.</strong></p>
-                </div>
-                <form action="#" method="post">
-                    <h3>Send us your feedback</h3>
-                    <label for="name">Your name</label>
-                    <input id="name" name="name" type="text" placeholder="Enter your name" required>
-                    <label for="email">Work email</label>
-                    <input id="email" name="email" type="email" placeholder="you@company.com" required>
-                    <label for="role">I am a...</label>
-                    <select id="role" name="role"><option>Contractor</option><option>Construction company</option><option>Site supervisor</option><option>Worker</option></select>
-                    <label for="message">Your feedback</label>
-                    <textarea id="message" name="message" placeholder="What would make BuildPay more useful for you?" required></textarea>
-                    <button class="button button-primary" onclick="sendWhatsApp();" type="submit">Submit feedback</button>
-                </form>
-            </div>
-        </section>
-    </main>
+  <div>
+    <div class="mock" aria-label="Sample preview of the daily follow-up list">
+      <div class="top"><b>Today's follow-ups</b><span class="tag warm">3 to call</span></div>
+      <div class="row"><div>Sample student A<small>Asked about the evening batch · 3 days ago</small></div><span class="tag">Overdue</span></div>
+      <div class="row"><div>Sample student B<small>Wants fee details · Instagram</small></div><span class="tag warm">Today</span></div>
+      <div class="row"><div>Sample student C<small>Visited the centre · Walk-in</small></div><span class="tag warm">Today</span></div>
+      <div class="row"><div>Sample student D<small>Joined the new batch</small></div><span class="tag ok">Admitted</span></div>
+      <p class="sample">Sample preview with sample data. The product is being built with pilot centres.</p>
+    </div>
+  </div>
+</div>
 
-    <footer id="contact"><div class="container">© 2025 BuildPay · Built for better construction teams</div></footer>
+<section class="alt">
+  <div class="wrap">
+    <h2>Sound familiar?</h2>
+    <p class="sub">Enquiries come from calls, WhatsApp, Instagram and walk-ins. Keeping track of all of them is harder than it should be.</p>
+    <div class="cards">
+      <div class="card"><h3>Enquiries are scattered</h3><p>Some in a notebook, some in Excel, some only in WhatsApp chats. Nobody sees the full picture.</p></div>
+      <div class="card"><h3>Follow-ups get forgotten</h3><p>A student asked about fees, the team got busy, and a week later they joined somewhere else.</p></div>
+      <div class="card"><h3>You can't tell what works</h3><p>Is it Instagram, walk-ins or referrals bringing admissions? Without a record, you're guessing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="sub">Built to be quick for a busy admissions team.</p>
+    <div class="cards">
+      <div class="card"><div class="num">1</div><h3>Add the enquiry</h3><p>Note the name, number, course and where they came from. It takes seconds on your phone.</p></div>
+      <div class="card"><div class="num">2</div><h3>Set the next follow-up</h3><p>Pick a date. Every enquiry always has a next action.</p></div>
+      <div class="card"><div class="num">3</div><h3>Work from today's list</h3><p>Open the app each morning, call the people due today, and mark who joined.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="pricing">
+  <div class="wrap">
+    <h2>Simple pricing</h2>
+    <p class="sub">One flat price per centre. No per-student or per-user charges.</p>
+    <div class="price-box">
+      <div class="price">₹<span data-price></span> <span>/ month per centre</span></div>
+      <ul class="tick">
+        <li>First month free for the first 5 pilot centres</li>
+        <li>Enquiry list with status and source</li>
+        <li>Follow-up dates and a daily call list</li>
+        <li>Admission tracking from enquiry to joined</li>
+        <li>Works on your phone</li>
+        <li>Cancel any time</li>
+      </ul>
+      <a class="btn" data-wa="Hi, I'd like to join the pilot. Please share the next steps.">Reserve a pilot spot</a>
+      <p class="note" style="margin-top:12px">Pilot centres also help decide which features come next.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Who is behind this</h2>
+    <div class="who">
+      <div class="avatar" data-initial></div>
+      <div>
+        <b data-owner></b>, software developer from <span data-town></span>, Kerala.<br>
+        <span class="note">I'm building this with local training centres, not for them from a distance. Message me directly on WhatsApp.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <p class="sub"></p>
+    <details><summary>Is the product ready?</summary><p>It's in early access. Pilot centres get it first, free for the first month, and you'll help shape what gets built.</p></details>
+    <details><summary>What do I need to start?</summary><p>Just a phone. Message me on WhatsApp and I'll help you set up and enter your current enquiries.</p></details>
+    <details><summary>What happens to my students' details?</summary><p>They're yours. I won't share or sell them. Ask me anything about how data is stored before you commit.</p></details>
+    <details><summary>Can I stop any time?</summary><p>Yes. There is no long contract.</p></details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center">
+    <h2>Want to be one of the first 5 centres?</h2>
+    <p class="sub" style="margin:0 auto 20px">Send a quick WhatsApp message and I'll reply personally.</p>
+    <a class="btn" data-wa="Hi, I'd like to join the pilot for my centre.">Message me on WhatsApp</a>
+    <p class="note" style="margin-top:12px">Or call <a data-tel></a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 <span data-name></span> · Kerala, India</div>
+</footer>
+
+<a class="btn float" data-wa="Hi, I'm interested in the pilot for my centre.">WhatsApp us</a>
+
+<script>
+  // ===== EDIT THESE VALUES =====
+  var CONFIG = {
+    name: "EnquiryDesk",           // working name, replace with yours
+    whatsapp: "917306927662",      // country code + number, no + or spaces
+    phoneDisplay: "+91 XXXXX XXXXX",
+    price: "699",                  // monthly price in rupees to test
+    owner: "Your Name",
+    town: "Your Town"
+  };
+  // =============================
+  function each(sel, fn){ Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+  each("[data-name]", function(e){ e.textContent = CONFIG.name; });
+  each("[data-price]", function(e){ e.textContent = CONFIG.price; });
+  each("[data-owner]", function(e){ e.textContent = CONFIG.owner; });
+  each("[data-town]", function(e){ e.textContent = CONFIG.town; });
+  each("[data-initial]", function(e){ e.textContent = CONFIG.owner.charAt(0).toUpperCase(); });
+  each("[data-tel]", function(e){ e.textContent = CONFIG.phoneDisplay; e.href = "tel:+" + CONFIG.whatsapp; });
+  each("[data-wa]", function(e){
+    e.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(e.getAttribute("data-wa"));
+    e.target = "_blank"; e.rel = "noopener";
+  });
+  document.title = CONFIG.name + " | Student enquiry follow-up for training centres in Kerala";
+</script>
 </body>
 </html>
